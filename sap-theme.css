@@ -1,0 +1,1811 @@
+/* ==========================================================================
+   REZORA ENTERPRISE - PARK UI DESIGN SYSTEM THEME (https://park-ui.com)
+   Based on Ark UI primitives, Panda CSS tokens, & Radix Color System
+   Palette: Neutral Slate / Zinc Canvas + Obsidian Solid & Indigo Accents
+   Typography: Plus Jakarta Sans & IBM Plex Sans Arabic
+   Radii: Layered Radii (l1: 6px, l2: 8px, l3: 12px, xl: 16px, full: 9999px)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+    /* --- Park UI / Radix Neutral Color Palette (Slate/Zinc) --- */
+    --colors-neutral-1: #FCFCFD;
+    --colors-neutral-2: #F8FAFC;                 /* App Canvas Background */
+    --colors-neutral-3: #F1F5F9;                 /* Surface Subtle / Muted */
+    --colors-neutral-4: #E2E8F0;                 /* Border Subtle / Default */
+    --colors-neutral-5: #CBD5E1;                 /* Border Muted */
+    --colors-neutral-6: #94A3B8;                 /* Border Emphasized */
+    --colors-neutral-7: #64748B;                 /* Foreground Muted / Placeholder */
+    --colors-neutral-8: #475569;                 /* Foreground Secondary */
+    --colors-neutral-9: #334155;                 /* Foreground Dark */
+    --colors-neutral-10: #1E293B;                /* Foreground Emphasized */
+    --colors-neutral-11: #0F172A;                /* Foreground Default (High Contrast) */
+    --colors-neutral-12: #020617;                /* Black / Deepest Charcoal */
+
+    /* --- Park UI Brand Accent (Indigo / Iris) --- */
+    --colors-accent-1: #EEF2FF;
+    --colors-accent-2: #E0E7FF;
+    --colors-accent-3: #C7D2FE;
+    --colors-accent-4: #A5B4FC;
+    --colors-accent-5: #818CF8;
+    --colors-accent-6: #6366F1;
+    --colors-accent-7: #4F46E5;                  /* Primary Brand Accent */
+    --colors-accent-8: #4338CA;
+    --colors-accent-9: #3730A3;
+    --colors-accent-surface: #F5F7FF;
+
+    /* --- Park UI Solid Action (Obsidian / High Contrast Dark) --- */
+    --colors-solid-bg: #0F172A;
+    --colors-solid-bg-hover: #1E293B;
+    --colors-solid-bg-active: #334155;
+    --colors-solid-fg: #FFFFFF;
+
+    /* --- Park UI Semantic Feedback (Radix Scales) --- */
+    /* Success (Emerald) */
+    --colors-success-1: #ECFDF5;
+    --colors-success-border: #A7F3D0;
+    --colors-success-solid: #10B981;
+    --colors-success-fg: #065F46;
+
+    /* Warning (Amber) */
+    --colors-warning-1: #FFFBEB;
+    --colors-warning-border: #FDE68A;
+    --colors-warning-solid: #F59E0B;
+    --colors-warning-fg: #92400E;
+
+    /* Error / Danger (Rose / Red) */
+    --colors-error-1: #FEF2F2;
+    --colors-error-border: #FECACA;
+    --colors-error-solid: #EF4444;
+    --colors-error-solid-hover: #DC2626;
+    --colors-error-fg: #991B1B;
+
+    /* Info (Blue / Sky) */
+    --colors-info-1: #EFF6FF;
+    --colors-info-border: #BFDBFE;
+    --colors-info-solid: #3B82F6;
+    --colors-info-fg: #1E40AF;
+
+    /* --- Park UI Layered Radii Tokens --- */
+    --radius-none: 0px;
+    --radius-2xs: 2px;
+    --radius-xs: 4px;
+    --radius-sm: 6px;                           /* l1: badges, mini controls */
+    --radius-md: 8px;                           /* l2: inputs, buttons, menu items */
+    --radius-lg: 10px;
+    --radius-xl: 12px;                          /* l3: cards, dropdowns, panels */
+    --radius-2xl: 16px;                         /* dialogs, modals */
+    --radius-full: 9999px;                      /* pills, chips, avatars */
+
+    /* Layered Radii Aliases */
+    --radius-l1: var(--radius-sm);
+    --radius-l2: var(--radius-md);
+    --radius-l3: var(--radius-xl);
+
+    /* --- Park UI Micro-Elevation & Shadows --- */
+    --shadow-xs: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+    --shadow-sm: 0 1px 3px 0 rgba(15, 23, 42, 0.07), 0 1px 2px -1px rgba(15, 23, 42, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.07), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
+    --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
+    --shadow-xl: 0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+    --shadow-card: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px 0 rgba(15, 23, 42, 0.02);
+    --shadow-modal: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+
+    /* --- Typography --- */
+    --font-family-base: 'Plus Jakarta Sans', 'IBM Plex Sans Arabic', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-family-mono: 'IBM Plex Mono', monospace;
+
+    /* --- Dimensions --- */
+    --header-height: 56px;
+    --sidebar-width: 260px;
+    --footer-height: 40px;
+
+    /* ==========================================================================
+       Legacy Compatibility Aliases (Ensures all existing JS and HTML work flawlessly)
+       ========================================================================== */
+    --cds-interactive-01: var(--colors-solid-bg);
+    --cds-interactive-01-hover: var(--colors-solid-bg-hover);
+    --cds-interactive-01-active: var(--colors-solid-bg-active);
+    --cds-interactive-02: var(--colors-neutral-3);
+    --cds-interactive-02-hover: var(--colors-neutral-4);
+    --cds-interactive-03: var(--colors-accent-7);
+    --cds-interactive-04: var(--colors-error-solid);
+    --cds-interactive-04-hover: var(--colors-error-solid-hover);
+
+    --cds-ui-background: var(--colors-neutral-2);
+    --cds-layer-01: #FFFFFF;
+    --cds-layer-02: var(--colors-neutral-3);
+    --cds-layer-hover: var(--colors-neutral-3);
+    --cds-layer-active: var(--colors-neutral-4);
+    --cds-layer-selected: var(--colors-neutral-3);
+
+    --cds-header-bg: #FFFFFF;
+    --cds-header-hover: var(--colors-neutral-3);
+    --cds-header-active: var(--colors-neutral-4);
+    --cds-header-text: var(--colors-neutral-11);
+
+    --cds-text-01: var(--colors-neutral-11);
+    --cds-text-02: var(--colors-neutral-8);
+    --cds-text-03: var(--colors-neutral-7);
+    --cds-text-04: var(--colors-neutral-6);
+    --cds-text-on-color: #FFFFFF;
+
+    --cds-ui-01: var(--colors-neutral-2);
+    --cds-ui-02: #FFFFFF;
+    --cds-ui-03: var(--colors-neutral-4);
+    --cds-ui-04: var(--colors-neutral-5);
+    --cds-ui-05: var(--colors-neutral-11);
+
+    --cds-support-error: var(--colors-error-solid);
+    --cds-support-error-bg: var(--colors-error-1);
+    --cds-support-error-border: var(--colors-error-border);
+
+    --cds-support-success: var(--colors-success-solid);
+    --cds-support-success-bg: var(--colors-success-1);
+    --cds-support-success-border: var(--colors-success-border);
+
+    --cds-support-warning: var(--colors-warning-solid);
+    --cds-support-warning-bg: var(--colors-warning-1);
+    --cds-support-warning-border: var(--colors-warning-border);
+
+    --cds-support-info: var(--colors-info-solid);
+    --cds-support-info-bg: var(--colors-info-1);
+    --cds-support-info-border: var(--colors-info-border);
+
+    --cds-focus: var(--colors-solid-bg);
+
+    /* SAP Legacy Variables */
+    --sap-primary: var(--colors-accent-7);
+    --sap-primary-hover: var(--colors-accent-8);
+    --sap-primary-active: var(--colors-accent-9);
+    --sap-primary-light: var(--colors-accent-1);
+
+    --sap-success: var(--colors-success-solid);
+    --sap-success-bg: var(--colors-success-1);
+    --sap-success-border: var(--colors-success-border);
+
+    --sap-warning: var(--colors-warning-solid);
+    --sap-warning-bg: var(--colors-warning-1);
+    --sap-warning-border: var(--colors-warning-border);
+
+    --sap-error: var(--colors-error-solid);
+    --sap-error-bg: var(--colors-error-1);
+    --sap-error-border: var(--colors-error-border);
+
+    --sap-information: var(--colors-info-solid);
+    --sap-purple: var(--colors-accent-6);
+    --sap-purple-bg: var(--colors-accent-1);
+
+    --sap-shell-header-bg: #FFFFFF;
+    --sap-shell-header-text: var(--colors-neutral-11);
+    --sap-bg-app: var(--colors-neutral-2);
+    --sap-bg-surface: #FFFFFF;
+    --sap-bg-secondary: var(--colors-neutral-3);
+    --sap-bg-hover: var(--colors-neutral-3);
+    --sap-bg-active: var(--colors-neutral-4);
+
+    --sap-text-primary: var(--colors-neutral-11);
+    --sap-text-secondary: var(--colors-neutral-8);
+    --sap-text-muted: var(--colors-neutral-7);
+    --sap-text-on-dark: #FFFFFF;
+
+    --sap-border: var(--colors-neutral-4);
+    --sap-border-light: var(--colors-neutral-3);
+    --sap-border-input: var(--colors-neutral-4);
+    --sap-border-input-focus: var(--colors-solid-bg);
+
+    --sap-shadow-xs: var(--shadow-xs);
+    --sap-shadow-card: var(--shadow-card);
+    --sap-shadow-hover: var(--shadow-md);
+    --sap-shadow-header: var(--shadow-xs);
+    --sap-shadow-modal: var(--shadow-modal);
+
+    --sap-radius-sm: var(--radius-sm);
+    --sap-radius-md: var(--radius-md);
+    --sap-radius-lg: var(--radius-xl);
+    --sap-radius-xl: var(--radius-2xl);
+    --sap-radius-pill: var(--radius-full);
+}
+
+/* ==========================================================================
+   Base & Reset
+   ========================================================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 14px;
+    direction: rtl;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--colors-neutral-2);
+    color: var(--colors-neutral-11);
+    font-family: var(--font-family-base) !important;
+    line-height: 1.5;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    padding-bottom: var(--footer-height);
+    overflow-x: hidden;
+}
+
+.tabular-numbers,
+.sap-tile-number,
+.sap-table td:nth-child(4),
+.sap-table td:nth-child(5),
+#kpiTotalSales,
+#statToday,
+#statMonth {
+    font-family: var(--font-family-mono) !important;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Park UI Smooth Scrollbars */
+::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--colors-neutral-4);
+    border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--colors-neutral-5);
+}
+
+/* Typography Headings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-base);
+    color: var(--colors-neutral-11);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+h1 { font-size: 1.75rem; line-height: 1.3; }
+h2 { font-size: 1.35rem; font-weight: 600; }
+h3 { font-size: 1.15rem; font-weight: 600; }
+h4 { font-size: 0.95rem; font-weight: 600; }
+
+a {
+    color: var(--colors-accent-7);
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+a:hover {
+    color: var(--colors-accent-8);
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   Park UI Shell Header (56px, Clean White, Border Bottom, Rounded Controls)
+   ========================================================================== */
+.shell-header {
+    background-color: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: var(--colors-neutral-11);
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    box-shadow: var(--shadow-xs);
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    border-bottom: 1px solid var(--colors-neutral-4);
+}
+
+.shell-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Park UI Icon Buttons (38x38, Rounded 8px) */
+.carbon-icon-btn,
+.zoho-icon-btn {
+    width: 38px;
+    height: 38px;
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--colors-neutral-8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.15rem;
+    border-radius: var(--radius-md);
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carbon-icon-btn:hover,
+.zoho-icon-btn:hover {
+    background-color: var(--colors-neutral-3);
+    color: var(--colors-neutral-11);
+    border-color: var(--colors-neutral-4);
+}
+
+.carbon-icon-btn:focus-visible,
+.zoho-icon-btn:focus-visible {
+    outline: 2px solid var(--colors-solid-bg);
+    outline-offset: 2px;
+}
+
+/* Park UI Logo / Brand Container */
+.carbon-logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.carbon-logo-mark {
+    background: linear-gradient(135deg, #0F172A 0%, #334155 100%);
+    color: #FFFFFF;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    padding: 5px 9px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-xs);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carbon-logo-title {
+    display: flex;
+    flex-direction: column;
+}
+
+.carbon-logo-title span:first-child {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--colors-neutral-11);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+}
+
+.carbon-product-tag {
+    font-size: 0.72rem;
+    color: var(--colors-neutral-7);
+    font-weight: 500;
+}
+
+/* Park UI Central Quick Search */
+.carbon-search-bar {
+    position: relative;
+    width: 380px;
+    max-width: 100%;
+}
+
+.carbon-search-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.9rem;
+    color: var(--colors-neutral-7);
+    pointer-events: none;
+}
+
+.carbon-search-bar input {
+    width: 100%;
+    height: 36px;
+    background-color: var(--colors-neutral-3);
+    border: 1px solid var(--colors-neutral-4);
+    border-radius: var(--radius-md);
+    padding: 0 36px 0 12px;
+    font-size: 0.85rem;
+    color: var(--colors-neutral-11);
+    font-family: var(--font-family-base);
+    transition: all 0.15s ease;
+    outline: none;
+}
+
+.carbon-search-bar input:focus {
+    background-color: #FFFFFF;
+    border-color: var(--colors-neutral-11);
+    box-shadow: 0 0 0 1px var(--colors-neutral-11), var(--shadow-xs);
+}
+
+.carbon-search-bar input::placeholder {
+    color: var(--colors-neutral-7);
+    font-size: 0.8rem;
+}
+
+/* Header Actions */
+.shell-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.shell-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    background: var(--colors-neutral-3);
+    border: 1px solid var(--colors-neutral-4);
+    border-radius: var(--radius-full);
+    font-size: 0.78rem;
+    font-family: var(--font-family-mono);
+    color: var(--colors-neutral-8);
+}
+
+.shell-chip-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: var(--radius-full);
+    background-color: var(--colors-success-solid);
+    box-shadow: 0 0 0 2px var(--colors-success-border);
+}
+
+/* Park UI Primary Action Button in Header */
+.btn-carbon-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 36px;
+    padding: 0 14px;
+    background-color: var(--colors-solid-bg);
+    color: var(--colors-solid-fg);
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: var(--font-family-base);
+    cursor: pointer;
+    box-shadow: var(--shadow-xs);
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-carbon-primary:hover {
+    background-color: var(--colors-solid-bg-hover);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-1px);
+}
+
+.btn-carbon-primary:active {
+    background-color: var(--colors-solid-bg-active);
+    transform: translateY(0);
+}
+
+/* User Badge Pill */
+.carbon-user-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 3px 10px 3px 4px;
+    background: var(--colors-neutral-3);
+    border: 1px solid var(--colors-neutral-4);
+    border-radius: var(--radius-full);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--colors-neutral-11);
+}
+
+.carbon-user-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-full);
+    background: var(--colors-accent-7);
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ==========================================================================
+   Park UI Side-Nav (260px Width, Pure White, Layered Rounded Nav Items)
+   ========================================================================== */
+.app-body {
+    display: flex;
+    margin-top: var(--header-height);
+    min-height: calc(100vh - var(--header-height));
+    position: relative;
+}
+
+.sidebar {
+    width: var(--sidebar-width);
+    background: #FFFFFF;
+    border-left: 1px solid var(--colors-neutral-4);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: fixed;
+    top: var(--header-height);
+    right: 0;
+    bottom: 0;
+    z-index: 900;
+    transition: transform 0.2s cubic-bezier(0.2, 0, 0.38, 0.9);
+    box-shadow: var(--shadow-xs);
+}
+
+.nav-links {
+    padding: 1rem 0.75rem;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.nav-category {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--colors-neutral-7);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 14px 12px 6px 12px;
+}
+
+.nav-category:first-child {
+    padding-top: 4px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding: 0 12px;
+    margin: 2px 0;
+    color: var(--colors-neutral-8);
+    cursor: pointer;
+    font-size: 0.88rem;
+    font-weight: 500;
+    border-radius: var(--radius-md);
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid transparent;
+}
+
+.nav-item:hover {
+    background-color: var(--colors-neutral-3);
+    color: var(--colors-neutral-11);
+}
+
+.nav-item.active {
+    background-color: var(--colors-neutral-3);
+    color: var(--colors-neutral-11);
+    font-weight: 600;
+    border-color: var(--colors-neutral-4);
+    box-shadow: var(--shadow-xs);
+}
+
+.nav-icon {
+    margin-left: 10px;
+    font-size: 1.1rem;
+    width: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar-footer-card {
+    padding: 1rem;
+    margin: 0.75rem;
+    background: var(--colors-neutral-2);
+    border: 1px solid var(--colors-neutral-4);
+    border-radius: var(--radius-xl);
+    font-size: 0.8rem;
+    color: var(--colors-neutral-8);
+}
+
+/* ==========================================================================
+   Main Content Area (Park UI Soft Slate Canvas)
+   ========================================================================== */
+.main-content {
+    flex: 1;
+    margin-right: var(--sidebar-width);
+    padding: 2rem 2.5rem;
+    background-color: var(--colors-neutral-2);
+    transition: margin-right 0.2s cubic-bezier(0.2, 0, 0.38, 0.9);
+    min-height: calc(100vh - var(--header-height) - var(--footer-height));
+    max-width: 1680px;
+}
+
+/* ==========================================================================
+   Park UI Cards & Containers (.sap-card, .clean-card, .glass-card)
+   ========================================================================== */
+.sap-card,
+.glass-card,
+.clean-card {
+    background: #FFFFFF !important;
+    border: 1px solid var(--colors-neutral-4) !important;
+    border-radius: var(--radius-xl) !important;
+    box-shadow: var(--shadow-card) !important;
+    margin-bottom: 1.75rem;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+.sap-card:hover,
+.clean-card:hover {
+    border-color: var(--colors-neutral-5) !important;
+}
+
+.sap-card-header,
+.card-header-clean {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 1.5rem;
+    background: #FFFFFF;
+    border-bottom: 1px solid var(--colors-neutral-4);
+}
+
+.sap-card-title,
+.card-title-clean {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--colors-neutral-11);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    letter-spacing: -0.01em;
+}
+
+.sap-card-content {
+    padding: 1.5rem;
+    color: var(--colors-neutral-11);
+}
+
+/* ==========================================================================
+   Park UI Hero Welcome Banner & KPI Metric Cards
+   ========================================================================== */
+.hero-welcome-banner {
+    background: #FFFFFF;
+    border: 1px solid var(--colors-neutral-4);
+    border-radius: var(--radius-xl);
+    padding: 1.5rem 1.75rem;
+    color: var(--colors-neutral-11);
+    box-shadow: var(--shadow-card);
+    margin-bottom: 1.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    position: relative;
+}
+
+.hero-welcome-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--colors-neutral-11);
+    margin-bottom: 0.35rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    letter-spacing: -0.02em;
+}
+
+.hero-welcome-subtitle {
+    color: var(--colors-neutral-8);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+}
+
+.tile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 1.75rem;
+}
+
+/* Park UI Metric Tiles */
+.sap-tile {
+    background: #FFFFFF;
+    border: 1px solid var(--colors-neutral-4);
+    border-radius: var(--radius-xl);
+    padding: 1.4rem;
+    box-shadow: var(--shadow-card);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 130px;
+    position: relative;
+}
+
+.sap-tile:hover {
+    border-color: var(--colors-neutral-5);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.sap-tile-header-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 0.85rem;
+}
+
+.sap-tile-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--colors-neutral-8);
+}
+
+.sap-tile-icon-box {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    background: var(--colors-neutral-3) !important;
+    color: var(--colors-neutral-10);
+}
+
+.sap-tile-number {
+    font-size: 1.85rem;
+    font-weight: 700;
+    color: var(--colors-neutral-11);
+    line-height: 1.2;
+    margin-bottom: 4px;
+    letter-spacing: -0.02em;
+    font-family: var(--font-family-mono);
+}
+
+.sap-tile-info {
+    font-size: 0.8rem;
+    color: var(--colors-neutral-7);
+}
+
+/* ==========================================================================
+   Park UI Data Tables (Rounded Card Container, 1px Dividers, Row Hover)
+   ========================================================================== */
+.sap-table,
+.clean-table,
+.carbon-table,
+.data-table,
+.cds--data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    color: var(--colors-neutral-11);
+}
+
+.sap-table thead,
+.clean-table thead,
+.carbon-table thead,
+.data-table thead,
+.cds--data-table thead {
+    background-color: var(--colors-neutral-2);
+    border-bottom: 1px solid var(--colors-neutral-4);
+}
+
+.sap-table th,
+.clean-table th,
+.carbon-table th,
+.data-table th,
+.cds--data-table th {
+    height: 42px;
+    padding: 0 16px;
+    font-weight: 600;
+    font-size: 0.78rem;
+    color: var(--colors-neutral-8);
+    text-align: right;
+    white-space: nowrap;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.sap-table td,
+.clean-table td {
+    height: 46px;
+    padding: 0 16px;
+    border-bottom: 1px solid var(--colors-neutral-3);
+    color: var(--colors-neutral-11);
+    vertical-align: middle;
+}
+
+.sap-table tbody tr,
+.clean-table tbody tr {
+    background-color: #FFFFFF;
+    transition: background-color 0.15s ease;
+}
+
+.sap-table tbody tr:hover,
+.clean-table tbody tr:hover {
+    background-color: var(--colors-neutral-3);
+}
+
+.sap-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* ==========================================================================
+   Park UI Buttons (Solid, Subtle, Outline, Danger)
+   ========================================================================== */
+.btn-sap,
+.btn-modern,
+.btn-clean {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: var(--font-family-base);
+    font-size: 0.86rem;
+    font-weight: 500;
+    height: 38px;
+    padding: 0 16px;
+    border-radius: var(--radius-md);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+    text-decoration: none;
+    box-shadow: var(--shadow-xs);
+}
+
+.btn-sap:focus-visible,
+.btn-modern:focus-visible,
+.btn-clean:focus-visible {
+    outline: 2px solid var(--colors-solid-bg);
+    outline-offset: 2px;
+}
+
+/* Solid Primary Action (Obsidian #0F172A) */
+.btn-sap.btn-emphasized,
+.btn-clean.btn-primary-clean {
+    background-color: var(--colors-solid-bg);
+    color: var(--colors-solid-fg) !important;
+    border-color: var(--colors-solid-bg);
+}
+
+.btn-sap.btn-emphasized:hover,
+.btn-clean.btn-primary-clean:hover {
+    background-color: var(--colors-solid-bg-hover);
+    border-color: var(--colors-solid-bg-hover);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-1px);
+}
+
+.btn-sap.btn-emphasized:active,
+.btn-clean.btn-primary-clean:active {
+    background-color: var(--colors-solid-bg-active);
+    transform: translateY(0);
+}
+
+/* Secondary / Subtle Button */
+.btn-sap.btn-standard,
+.btn-clean.btn-secondary-clean {
+    background-color: var(--colors-neutral-3);
+    color: var(--colors-neutral-11) !important;
+    border-color: var(--colors-neutral-4);
+}
+
+.btn-sap.btn-standard:hover,
+.btn-clean.btn-secondary-clean:hover {
+    background-color: var(--colors-neutral-4);
+    color: var(--colors-neutral-12) !important;
+}
+
+/* Outline / Transparent Button */
+.btn-sap.btn-transparent {
+    background-color: #FFFFFF;
+    color: var(--colors-neutral-11) !important;
+    border: 1px solid var(--colors-neutral-4);
+}
+
+.btn-sap.btn-transparent:hover {
+    background-color: var(--colors-neutral-3);
+    border-color: var(--colors-neutral-5);
+}
+
+/* Danger / Critical Action */
+.btn-sap.btn-critical,
+.btn-clean.btn-danger {
+    background-color: var(--colors-error-solid);
+    color: #FFFFFF !important;
+    border-color: var(--colors-error-solid);
+}
+
+.btn-sap.btn-critical:hover,
+.btn-clean.btn-danger:hover {
+    background-color: var(--colors-error-solid-hover);
+    border-color: var(--colors-error-solid-hover);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-1px);
+}
+
+/* Hero Button Variant */
+.btn-hero {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 14px;
+    height: 38px;
+    border-radius: var(--radius-md);
+    background: #FFFFFF;
+    color: var(--colors-neutral-11);
+    font-size: 0.85rem;
+    font-weight: 500;
+    border: 1px solid var(--colors-neutral-4);
+    cursor: pointer;
+    box-shadow: var(--shadow-xs);
+    transition: all 0.15s ease;
+}
+
+.btn-hero:hover {
+    background: var(--colors-neutral-3);
+    border-color: var(--colors-neutral-5);
+}
+
+/* ==========================================================================
+   Park UI Form Controls & Inputs (8px Radius, Clean Border, Elegant Focus)
+   ========================================================================== */
+.sap-input-group,
+.form-group-clean {
+    margin-bottom: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.sap-label,
+.form-label-clean {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--colors-neutral-8);
+}
+
+.sap-input,
+.sap-select,
+.form-input-clean {
+    height: 38px;
+    padding: 0 12px;
+    background-color: #FFFFFF;
+    border: 1px solid var(--colors-neutral-4);
+    border-radius: var(--radius-md);
+    color: var(--colors-neutral-11);
+    font-family: var(--font-family-base);
+    font-size: 0.88rem;
+    width: 100%;
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+    box-shadow: var(--shadow-xs);
+}
+
+textarea.sap-input,
+textarea.form-input-clean {
+    height: auto;
+    padding: 10px 12px;
+    min-height: 80px;
+    resize: vertical;
+}
+
+.sap-input:hover,
+.sap-select:hover,
+.form-input-clean:hover {
+    border-color: var(--colors-neutral-5);
+}
+
+.sap-input:focus,
+.sap-select:focus,
+.form-input-clean:focus {
+    background-color: #FFFFFF;
+    border-color: var(--colors-neutral-11);
+    box-shadow: 0 0 0 1px var(--colors-neutral-11), var(--shadow-xs);
+}
+
+/* Remove number input spinner arrows globally across all browsers */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0 !important;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield !important;
+    appearance: textfield !important;
+}
+
+/* ==========================================================================
+   Park UI Status Badges & Pills (Soft Radix Tints, 6px / Full Radii)
+   ========================================================================== */
+.badge-pill,
+.badge-status-pill,
+.report-badge-pill,
+.sap-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 9px;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.2;
+    border: 1px solid transparent;
+}
+
+.badge-pill-success {
+    background-color: var(--colors-success-1);
+    color: var(--colors-success-fg);
+    border-color: var(--colors-success-border);
+}
+
+.badge-pill-warning {
+    background-color: var(--colors-warning-1);
+    color: var(--colors-warning-fg);
+    border-color: var(--colors-warning-border);
+}
+
+.badge-pill-error {
+    background-color: var(--colors-error-1);
+    color: var(--colors-error-fg);
+    border-color: var(--colors-error-border);
+}
+
+.badge-pill-primary {
+    background-color: var(--colors-accent-1);
+    color: var(--colors-accent-7);
+    border-color: var(--colors-accent-3);
+}
+
+/* ==========================================================================
+   Park UI Modals & Dialogs (Backdrop Blur, 16px Radius, High Elevation)
+   ========================================================================== */
+.modal-overlay,
+#posModalOverlay,
+#cashierModalOverlay,
+#definitionModal,
+#branchModalOverlay,
+#duplicateManagerModalOverlay,
+#networkBreakdownModal,
+#addPosModal {
+    background: rgba(15, 23, 42, 0.45) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    animation: parkFadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes parkFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-dialog,
+.modal-overlay > .sap-card,
+#posModalOverlay > .sap-card,
+#cashierModalOverlay > .sap-card,
+#definitionModal > .sap-card,
+#branchModalOverlay > .sap-card,
+#duplicateManagerModalOverlay > .sap-card,
+#networkBreakdownModal > .sap-card,
+#addPosModal > .sap-card {
+    border-radius: var(--radius-2xl) !important;
+    border: 1px solid var(--colors-neutral-4) !important;
+    box-shadow: var(--shadow-modal) !important;
+    animation: parkSlideUp 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes parkSlideUp {
+    from { transform: translateY(8px) scale(0.98); }
+    to { transform: translateY(0) scale(1); }
+}
+
+/* ==========================================================================
+   Park UI Footer (.sap-footer)
+   ========================================================================== */
+.sap-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: var(--footer-height);
+    background-color: #FFFFFF;
+    color: var(--colors-neutral-7);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+    font-size: 0.8rem;
+    z-index: 1000;
+    border-top: 1px solid var(--colors-neutral-4);
+    box-shadow: 0 -1px 3px 0 rgba(15, 23, 42, 0.02);
+}
+
+.sap-footer-left {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-family: var(--font-family-mono);
+}
+
+.sap-footer-right {
+    color: var(--colors-neutral-8);
+    font-family: var(--font-family-base);
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   Analytics Grid & KPI Cards
+   ========================================================================== */
+.analytics-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 1.75rem;
+}
+
+.analytics-kpi-card {
+    background: #FFFFFF;
+    border: 1px solid var(--colors-neutral-4);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-card);
+    transition: all 0.15s ease;
+}
+
+.analytics-kpi-card:hover {
+    border-color: var(--colors-neutral-5);
+    box-shadow: var(--shadow-md);
+}
+
+.analytics-layout-container {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.report-nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: var(--radius-md);
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--colors-neutral-8);
+    font-family: var(--font-family-base);
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-align: right;
+    margin-bottom: 4px;
+}
+
+.report-nav-btn:hover {
+    background-color: var(--colors-neutral-3);
+    color: var(--colors-neutral-11);
+}
+
+.report-nav-btn.active {
+    background-color: var(--colors-neutral-3);
+    border-color: var(--colors-neutral-4);
+    color: var(--colors-neutral-11);
+    font-weight: 600;
+    box-shadow: var(--shadow-xs);
+}
+
+/* ==========================================================================
+   Park UI - POS Sales Daily Matrix (مبيعات نقاط البيع اليومية)
+   ========================================================================== */
+.pos-matrix-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 14px 18px;
+    background: #FFFFFF;
+    border: 1px solid var(--colors-neutral-4);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-card);
+}
+
+.pos-date-controller {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-date-step {
+    height: 38px;
+    padding: 0 12px;
+    background: #FFFFFF;
+    border: 1px solid var(--colors-neutral-4);
+    border-radius: var(--radius-md);
+    color: var(--colors-neutral-11);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    box-shadow: var(--shadow-xs);
+}
+
+.btn-date-step:hover {
+    background: var(--colors-neutral-3);
+    border-color: var(--colors-neutral-5);
+}
+
+.pos-date-picker {
+    height: 38px;
+    padding: 0 14px;
+    background: #FFFFFF;
+    border: 1px solid var(--colors-neutral-4);
+    border-radius: var(--radius-md);
+    font-family: var(--font-family-mono);
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--colors-neutral-11);
+    cursor: pointer;
+    box-shadow: var(--shadow-xs);
+    transition: all 0.15s ease;
+}
+
+.pos-date-picker:focus {
+    border-color: var(--colors-neutral-11);
+    box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.1), var(--shadow-xs);
+    outline: none;
+}
+
+/* ==========================================================================
+   POS Sales Matrix - Park UI Enhanced Styles
+   ========================================================================== */
+
+/* Pulse Animation for Live Session */
+@keyframes posPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.3); opacity: 0.6; }
+}
+
+.pos-pulse-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #10B981;
+    animation: posPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Hero Header Card */
+.pos-hero-card {
+    background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%);
+    border: 1px solid var(--colors-neutral-4);
+    border-radius: var(--radius-2xl);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.25rem;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    transition: all 0.2s ease;
+}
+
+/* Live Reconciled KPI Cards Grid */
+.pos-live-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+    gap: 12px;
+    margin-bottom: 1.25rem;
+}
+
+.pos-kpi-card {
+    background: #FFFFFF;
+    border: 1px solid var(--colors-neutral-4);
+    border-radius: var(--radius-xl);
+    padding: 12px 14px;
+    box-shadow: var(--shadow-xs);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.pos-kpi-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+    border-color: var(--colors-neutral-5);
+}
+
+/* Unified Control Deck */
+.pos-control-deck {
+    background: #FFFFFF;
+    border: 1px solid var(--colors-neutral-4);
+    border-radius: var(--radius-xl);
+    padding: 12px 18px;
+    margin-bottom: 1.25rem;
+    box-shadow: var(--shadow-xs);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+/* Table Container & Table */
+.pos-matrix-table-container {
+    background: #FFFFFF;
+    border: 1px solid var(--colors-neutral-4);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-card);
+    margin-bottom: 1.25rem;
+    overflow-x: auto;
+    position: relative;
+}
+
+.pos-matrix-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.88rem;
+    color: var(--colors-neutral-11);
+}
+
+.pos-matrix-table thead {
+    background: #F8FAFC;
+}
+
+.pos-matrix-table th {
+    height: 48px;
+    padding: 10px 14px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: var(--colors-neutral-9);
+    text-align: right;
+    white-space: nowrap;
+    border-bottom: 2px solid var(--colors-neutral-4);
+    border-left: 1px solid var(--colors-neutral-3);
+    letter-spacing: 0.02em;
+}
+
+.pos-matrix-table th:last-child {
+    border-left: none;
+}
+
+.pos-matrix-row {
+    transition: background-color 0.15s ease;
+}
+
+.pos-matrix-row td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--colors-neutral-3);
+    border-left: 1px solid var(--colors-neutral-3);
+    vertical-align: middle;
+}
+
+.pos-matrix-row td:last-child {
+    border-left: none;
+}
+
+.pos-matrix-row:hover {
+    background-color: #F8FAFC;
+}
+
+/* POS Terminal Avatar & Cell */
+.pos-cell-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pos-avatar-badge {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
+    border: 1px solid #C7D2FE;
+    color: #4F46E5;
+    font-family: var(--font-family-mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: var(--shadow-xs);
+}
+
+.pos-title-text {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--colors-neutral-12);
+}
+
+.btn-unpin-link {
+    background: none;
+    border: none;
+    font-size: 0.72rem;
+    color: #94A3B8;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 0;
+    transition: color 0.15s ease;
+}
+
+.btn-unpin-link:hover {
+    color: #EF4444;
+    text-decoration: underline;
+}
+
+/* Input Fields & Wrappers */
+.pos-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-width: 120px;
+}
+
+.pos-num-input {
+    width: 100%;
+    height: 40px;
+    padding: 6px 36px 6px 10px;
+    background: #FFFFFF;
+    border: 1px solid var(--colors-neutral-4);
+    border-radius: var(--radius-md);
+    font-family: var(--font-family-mono);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--colors-neutral-12);
+    text-align: left;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-xs);
+    -moz-appearance: textfield !important;
+    appearance: textfield !important;
+}
+
+.pos-num-input::-webkit-outer-spin-button,
+.pos-num-input::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0 !important;
+}
+
+.pos-num-input:hover {
+    border-color: var(--colors-neutral-6);
+}
+
+.pos-num-input:focus {
+    outline: none;
+    background: #FFFFFF;
+    border-color: #4F46E5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15), var(--shadow-xs);
+}
+
+/* Custom Input Focus Tones */
+.pos-returns-input:focus {
+    border-color: #EF4444 !important;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15), var(--shadow-xs) !important;
+}
+
+.pos-network-input:focus {
+    border-color: #F59E0B !important;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15), var(--shadow-xs) !important;
+}
+
+.pos-actual-cash-input:focus {
+    border-color: #10B981 !important;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.18), var(--shadow-xs) !important;
+}
+
+.currency-hint {
+    position: absolute;
+    right: 10px;
+    font-size: 0.75rem;
+    color: var(--colors-neutral-7);
+    pointer-events: none;
+    font-weight: 600;
+    user-select: none;
+}
+
+/* Calculated Output Cells */
+.pos-calc-cell {
+    min-width: 110px;
+    text-align: left;
+}
+
+.pos-calc-value {
+    font-family: var(--font-family-mono);
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: #4F46E5;
+    text-align: left;
+    padding: 7px 12px;
+    background: #EEF2FF;
+    border: 1px solid #C7D2FE;
+    border-radius: var(--radius-md);
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.pos-expected-value {
+    font-family: var(--font-family-mono);
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: #1D4ED8;
+    text-align: left;
+    padding: 7px 12px;
+    background: #EFF6FF;
+    border: 1px solid #BFDBFE;
+    border-radius: var(--radius-md);
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Network Split Button */
+.pos-network-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.btn-network-split {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    height: 26px;
+    padding: 0 10px;
+    background: #F8FAFC;
+    border: 1px solid var(--colors-neutral-4);
+    border-radius: var(--radius-sm);
+    color: var(--colors-neutral-8);
+    font-size: 0.74rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.btn-network-split:hover {
+    background: #EEF2FF;
+    border-color: #C7D2FE;
+    color: #4F46E5;
+}
+
+.badge-split-count {
+    font-family: var(--font-family-mono);
+    color: #4F46E5;
+    font-weight: 700;
+}
+
+/* Action Buttons (A4 / Receipt / Report) */
+.pos-btn-action-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+.btn-pos-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    height: 34px;
+    padding: 0 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: 1px solid var(--colors-neutral-4);
+    background: #FFFFFF;
+    color: var(--colors-neutral-11);
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-xs);
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-pos-action:hover {
+    background: #F8FAFC;
+    border-color: var(--colors-neutral-6);
+    color: var(--colors-neutral-12);
+    transform: translateY(-1px);
+}
+
+.btn-pos-a4:hover {
+    background: #EFF6FF;
+    border-color: #BFDBFE;
+    color: #1D4ED8;
+}
+
+.btn-pos-receipt:hover {
+    background: #F1F5F9;
+    border-color: #CBD5E1;
+    color: #0F172A;
+}
+
+.btn-pos-report-accent {
+    color: #4F46E5 !important;
+    border-color: #C7D2FE !important;
+    background: #EEF2FF !important;
+    font-weight: 700 !important;
+}
+
+.btn-pos-report-accent:hover {
+    background: #E0E7FF !important;
+    border-color: #A5B4FC !important;
+}
+
+.btn-pos-save-row {
+    background: #0F172A !important;
+    color: #FFFFFF !important;
+    border-color: #0F172A !important;
+    font-weight: 700 !important;
+}
+
+.btn-pos-save-row:hover {
+    background: #1E293B !important;
+    border-color: #1E293B !important;
+    transform: translateY(-1px);
+}
+
+.btn-pos-settled {
+    background: #ECFDF5 !important;
+    color: #059669 !important;
+    border-color: #A7F3D0 !important;
+    font-weight: 700 !important;
+}
+
+.btn-pos-settled:hover {
+    background: #D1FAE5 !important;
+    border-color: #6EE7B7 !important;
+    transform: translateY(-1px);
+}
+
+.pos-settled-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 1px 7px;
+    border-radius: 9999px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    background: #ECFDF5;
+    color: #059669;
+    border: 1px solid #A7F3D0;
+    font-family: var(--font-family-mono);
+}
+
+.pos-pending-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 1px 7px;
+    border-radius: 9999px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    background: var(--colors-neutral-2);
+    color: var(--colors-neutral-7);
+    border: 1px solid var(--colors-neutral-4);
+}
+
+/* Diff Badges */
+.badge-diff-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    border-radius: 9999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    font-family: var(--font-family-mono);
+    line-height: 1;
+    box-shadow: var(--shadow-xs);
+    white-space: nowrap;
+}
+
+.badge-diff-matching {
+    background: #ECFDF5;
+    border: 1px solid #A7F3D0;
+    color: #065F46;
+}
+
+.badge-diff-deficit {
+    background: #FEF2F2;
+    border: 1px solid #FECACA;
+    color: #991B1B;
+}
+
+.badge-diff-surplus {
+    background: #FFFBEB;
+    border: 1px solid #FDE68A;
+    color: #92400E;
+}
+
+/* Keyboard Navigation Helper Strip */
+.pos-shortcuts-helper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px;
+    background: #FFFFFF;
+    border: 1px solid var(--colors-neutral-4);
+    border-radius: var(--radius-xl);
+    margin-bottom: 1.5rem;
+    font-size: 0.78rem;
+    color: var(--colors-neutral-8);
+    flex-wrap: wrap;
+    gap: 8px;
+    box-shadow: var(--shadow-xs);
+}
+
+/* Matrix Totals Footer (الإجمالي) */
+.pos-matrix-tfoot tr {
+    background: #F8FAFC;
+    border-top: 2px solid var(--colors-neutral-5);
+    border-bottom: 2px solid var(--colors-neutral-5);
+}
+
+.pos-matrix-tfoot td {
+    padding: 14px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-left: 1px solid var(--colors-neutral-4);
+}
+
+.pos-matrix-tfoot td:last-child {
+    border-left: none;
+}
+
+.total-money-cell {
+    font-family: var(--font-family-mono);
+    font-size: 1.15rem;
+    text-align: left;
+}
+
+/* ==========================================================================
+   Responsive Adjustments
+   ========================================================================== */
+@media (max-width: 992px) {
+    .sidebar {
+        transform: translateX(100%);
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+        box-shadow: var(--shadow-xl);
+    }
+
+    .main-content {
+        margin-right: 0 !important;
+        padding: 1.25rem;
+    }
+
+    .carbon-search-bar,
+    .zoho-search-bar {
+        display: none;
+    }
+
+    .analytics-layout-container {
+        grid-template-columns: 1fr;
+    }
+}

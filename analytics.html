@@ -1,0 +1,194 @@
+<div class="main-content" style="background-color: #f5f7fa; min-height: 100vh; display: flex; flex-direction: column;">
+    <div class="page-header"
+        style="margin-bottom: 1rem; padding: 1rem 2rem; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+        <div class="header-content" style="display: flex; align-items: center; justify-content: space-between;">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <h1 class="page-title" style="margin: 0; font-size: 1.4rem;">📊 التقارير والتحليلات</h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- Executive KPIs Bar -->
+    <div style="padding: 0 20px 15px 20px;">
+        <div class="analytics-kpi-grid">
+            <div class="sap-card analytics-kpi-card" style="padding: 1.25rem; border-right: 4px solid var(--sap-primary, #0A6ED1); margin: 0; background: white; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <div style="color: var(--sap-text-secondary, #6A6D70); font-size: 0.85rem; font-weight: 600;">إجمالي مبيعات النظام</div>
+                        <div id="kpiTotalSales" style="font-size: 1.6rem; font-weight: 700; color: var(--sap-primary, #0A6ED1); margin-top: 4px;">0.00 ريال</div>
+                    </div>
+                    <div style="background: rgba(10, 110, 209, 0.1); width: 42px; height: 42px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem;">💰</div>
+                </div>
+                <div style="font-size: 0.8rem; color: #888; margin-top: 8px;">لكافة العمليات والفروع المسجلة</div>
+            </div>
+
+            <div class="sap-card analytics-kpi-card" style="padding: 1.25rem; border-right: 4px solid var(--sap-success, #107E3E); margin: 0; background: white; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <div style="color: var(--sap-text-secondary, #6A6D70); font-size: 0.85rem; font-weight: 600;">عدد العمليات الإجمالي</div>
+                        <div id="kpiTotalTx" style="font-size: 1.6rem; font-weight: 700; color: #32363A; margin-top: 4px;">0</div>
+                    </div>
+                    <div style="background: rgba(16, 126, 62, 0.1); width: 42px; height: 42px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem;">🧾</div>
+                </div>
+                <div style="font-size: 0.8rem; color: #888; margin-top: 8px;">عملية بيع مؤكدة</div>
+            </div>
+
+            <div class="sap-card analytics-kpi-card" style="padding: 1.25rem; border-right: 4px solid #8E44AD; margin: 0; background: white; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <div style="color: var(--sap-text-secondary, #6A6D70); font-size: 0.85rem; font-weight: 600;">متوسط قيمة العملية</div>
+                        <div id="kpiAvgTx" style="font-size: 1.6rem; font-weight: 700; color: #8E44AD; margin-top: 4px;">0.00 ريال</div>
+                    </div>
+                    <div style="background: rgba(142, 68, 173, 0.1); width: 42px; height: 42px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem;">🎯</div>
+                </div>
+                <div style="font-size: 0.8rem; color: #888; margin-top: 8px;">معدل كل عملية بيع</div>
+            </div>
+
+            <div class="sap-card analytics-kpi-card" style="padding: 1.25rem; border-right: 4px solid #E67E22; margin: 0; background: white; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <div style="color: var(--sap-text-secondary, #6A6D70); font-size: 0.85rem; font-weight: 600;">الفرع الأكثر مبيعاً</div>
+                        <div id="kpiTopBranch" style="font-size: 1.3rem; font-weight: 700; color: #D35400; margin-top: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px;">-</div>
+                    </div>
+                    <div style="background: rgba(230, 126, 34, 0.1); width: 42px; height: 42px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem;">🏆</div>
+                </div>
+                <div id="kpiTopBranchAmount" style="font-size: 0.8rem; color: #888; margin-top: 8px;">بإجمالي 0.00 ريال</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="analytics-container"
+        style="display: flex; flex: 1; gap: 20px; padding: 0 20px 20px 20px; height: calc(100vh - 180px);">
+        <!-- Sidebar Selection -->
+        <div class="analytics-sidebar"
+            style="width: 250px; background: white; border-radius: 12px; padding: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); display: flex; flex-direction: column; gap: 10px;">
+            <h3
+                style="margin: 0 0 10px 0; font-size: 1rem; color: #666; padding-bottom: 10px; border-bottom: 1px solid #eee;">
+                نوع التقرير</h3>
+
+            <button class="report-nav-btn active" onclick="switchReport('daily')" id="btn-daily">
+                <span class="icon">📅</span>
+                <span class="text">التقرير اليومي</span>
+            </button>
+
+            <button class="report-nav-btn" onclick="switchReport('monthly')" id="btn-monthly">
+                <span class="icon">📈</span>
+                <span class="text">التقرير الشهري</span>
+            </button>
+
+            <button class="report-nav-btn" onclick="switchReport('custom')" id="btn-custom">
+                <span class="icon">🔍</span>
+                <span class="text">تقرير مخصص</span>
+            </button>
+
+            <button class="report-nav-btn" onclick="switchReport('branches')" id="btn-branches">
+                <span class="icon">🏢</span>
+                <span class="text">أداء الفروع</span>
+            </button>
+
+            <button class="report-nav-btn" onclick="switchReport('matrix')" id="btn-matrix">
+                <span class="icon">📅</span>
+                <span class="text">مصفوفة المبيعات</span>
+            </button>
+
+            <button class="report-nav-btn" onclick="switchReport('products')" id="btn-products">
+                <span class="icon">📦</span>
+                <span class="text">أداء المنتجات</span>
+            </button>
+
+            <button class="report-nav-btn" onclick="switchReport('yearly')" id="btn-yearly">
+                <span class="icon">🗓️</span>
+                <span class="text">مقارنة سنوية</span>
+            </button>
+
+            <button class="report-nav-btn" onclick="switchReport('peak')" id="btn-peak">
+                <span class="icon">📊</span>
+                <span class="text">تحليل الذروة</span>
+            </button>
+
+            <button class="report-nav-btn" onclick="switchReport('branchTrends')" id="btn-branchTrends">
+                <span class="icon">📈</span>
+                <span class="text">اتجاهات الفروع</span>
+            </button>
+
+            <button class="report-nav-btn" onclick="switchReport('categoryAnalysis')" id="btn-categoryAnalysis">
+                <span class="icon">📁</span>
+                <span class="text">تحليل الفئات</span>
+            </button>
+
+            <button class="report-nav-btn" onclick="switchReport('ai')" id="btn-ai"
+                style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; margin-top: 10px;">
+                <span class="icon">🤖</span>
+                <span class="text">تحليل ذكي</span>
+            </button>
+        </div>
+
+        <!-- Main Display Area -->
+        <div class="analytics-content" id="reportDisplayArea"
+            style="flex: 1; background: white; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); padding: 20px; overflow-y: auto;">
+            <!-- Content will be loaded here -->
+            <div class="empty-state"
+                style="height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #888;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">📊</div>
+                <h3>اختر نوع التقرير للعرض</h3>
+                <p>قم باختيار أحد التقارير من القائمة الجانبية لعرض التفاصيل</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .report-nav-btn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        padding: 12px 15px;
+        border: none;
+        background: transparent;
+        border-radius: 8px;
+        cursor: pointer;
+        text-align: right;
+        font-family: inherit;
+        color: #555;
+        transition: all 0.2s ease;
+    }
+
+    .report-nav-btn:hover {
+        background-color: #f0f7ff;
+        color: var(--primary);
+    }
+
+    .report-nav-btn.active {
+        background-color: var(--primary);
+        color: white;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .report-nav-btn .icon {
+        font-size: 1.2rem;
+    }
+
+    .report-nav-btn .text {
+        font-weight: 500;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .analytics-container {
+            flex-direction: column;
+            height: auto;
+        }
+
+        .analytics-sidebar {
+            width: 100%;
+            flex-direction: row;
+            overflow-x: auto;
+            padding-bottom: 15px;
+        }
+
+        .report-nav-btn {
+            min-width: 150px;
+        }
+    }
+</style>
